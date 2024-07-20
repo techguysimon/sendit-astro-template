@@ -60,6 +60,55 @@ collections_config:
           structures: _structures.recurrences
     _select_data:
     _structures:
+      recurrences:
+        style: select
+        values:
+          - value:
+              pattern:
+                type: select
+                options:
+                  values:
+                    - daily
+                    - weekly
+                    - monthly
+                    - yearly
+              interval:
+                type: number
+                empty_type: number
+              days:
+                type: multiselect
+                options:
+                  values:
+                    - sunday
+                    - monday
+                    - tuesday
+                    - wednesday
+                    - thursday
+                    - friday
+                    - saturday
+              monthlyPattern:
+                type: select
+                options:
+                  values:
+                    - first
+                    - second
+                    - third
+                    - fourth
+                    - last
+              monthlyPatternDay:
+                type: select
+                options:
+                  values:
+                    - sunday
+                    - monday
+                    - tuesday
+                    - wednesday
+                    - thursday
+                    - friday
+                    - saturday
+              endDate:
+                type: date
+                empty_type: string
     add_options:
       - name: Add New Post
         icon: post_add
@@ -212,53 +261,4 @@ _structures:
       - value:
           item:
           isActive:
-  recurrences:
-    style: select
-    values:
-      - value:
-          pattern:
-            type: select
-            options:
-              values:
-                - daily
-                - weekly
-                - monthly
-                - yearly
-          interval:
-            type: number
-            empty_type: number
-          days:
-            type: multiselect
-            options:
-              values:
-                - sunday
-                - monday
-                - tuesday
-                - wednesday
-                - thursday
-                - friday
-                - saturday
-          monthlyPattern:
-            type: select
-            options:
-              values:
-                - first
-                - second
-                - third
-                - fourth
-                - last
-          monthlyPatternDay:
-            type: select
-            options:
-              values:
-                - sunday
-                - monday
-                - tuesday
-                - wednesday
-                - thursday
-                - friday
-                - saturday
-          endDate:
-            type: date
-            empty_type: string
 timezone: Etc/UTC
