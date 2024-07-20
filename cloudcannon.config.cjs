@@ -1,0 +1,324 @@
+module.exports = {
+  paths: {
+    uploads: 'public/uploads',
+    static: 'public',
+    data: 'data',
+  },
+  collections_config: {
+    data: {
+      path: 'data',
+      output: false,
+      description: '',
+      icon: 'notes',
+      disable_add: true,
+      disable_add_folder: true,
+      disable_file_actions: false,
+    },
+    posts: {
+      path: 'src/content/blog',
+      output: true,
+      url: '/blog/[slug]/',
+      description: '',
+      icon: 'notes',
+      documentation: {
+        url: 'https://docs.astro.build/en/getting-started/',
+        text: 'Doc Example',
+      },
+      _enabled_editors: ['content', 'visual'],
+      _inputs: {
+        title: {
+          type: 'auto',
+          label: 'URL/Title',
+          cascade: true,
+          empty_type: 'string',
+        },
+        image: {
+          type: 'auto',
+          cascade: true,
+          empty_type: 'string',
+        },
+        image_alt: {
+          type: 'auto',
+          cascade: true,
+          empty_type: 'string',
+        },
+        author: {
+          type: 'auto',
+          cascade: true,
+          empty_type: 'string',
+        },
+        tags: {
+          type: 'multiselect',
+          cascade: true,
+          allow_create: true,
+          empty_type: 'array',
+        },
+        recurrences: {
+          type: 'array',
+          cascade: true,
+          options: {
+            structures: '_structures.recurrences',
+          },
+        },
+      },
+      _structures: {
+        recurrences: {
+          style: 'select',
+          values: [
+            {
+              value: {
+                pattern: {
+                  type: 'select',
+                  options: {
+                    values: ['daily', 'weekly', 'monthly', 'yearly'],
+                  },
+                },
+                interval: {
+                  type: 'number',
+                  empty_type: 'number',
+                },
+                days: {
+                  type: 'multiselect',
+                  options: {
+                    values: [
+                      'sunday',
+                      'monday',
+                      'tuesday',
+                      'wednesday',
+                      'thursday',
+                      'friday',
+                      'saturday',
+                    ],
+                  },
+                },
+                monthlyPattern: {
+                  type: 'select',
+                  options: {
+                    values: ['first', 'second', 'third', 'fourth', 'last'],
+                  },
+                },
+                monthlyPatternDay: {
+                  type: 'select',
+                  options: {
+                    values: [
+                      'sunday',
+                      'monday',
+                      'tuesday',
+                      'wednesday',
+                      'thursday',
+                      'friday',
+                      'saturday',
+                    ],
+                  },
+                },
+                endDate: {
+                  type: 'date',
+                  empty_type: 'string',
+                },
+              },
+            },
+          ],
+        },
+      },
+      add_options: [
+        {
+          name: 'Add New Post',
+          icon: 'post_add',
+          schema: 'default',
+        },
+      ],
+      disable_add: false,
+      disable_add_folder: false,
+      disable_file_actions: false,
+      schemas: {
+        default: {
+          path: 'schemas/post.md',
+          reorder_inputs: true,
+          hide_extra_inputs: false,
+          remove_empty_inputs: false,
+          remove_extra_inputs: true,
+          name: 'New Post',
+          icon: 'notes',
+        },
+      },
+    },
+    pages: {
+      path: 'src/content/pages',
+      output: true,
+      url: '/[slug]/',
+      filter: {
+        base: 'strict',
+      },
+      icon: 'wysiwyg',
+      _enabled_editors: ['visual'],
+      _inputs: {
+        content_blocks: {
+          type: 'auto',
+          cascade: true,
+          empty_type: 'array',
+        },
+      },
+      add_options: [
+        {
+          name: 'Add New Page',
+          icon: 'note_add',
+          schema: 'default',
+        },
+      ],
+      disable_add: false,
+      disable_add_folder: false,
+      disable_file_actions: false,
+      schemas: {
+        default: {
+          path: 'schemas/page.md',
+          reorder_inputs: true,
+          hide_extra_inputs: false,
+          remove_empty_inputs: false,
+          remove_extra_inputs: true,
+          name: 'New Page',
+          icon: 'notes',
+          new_preview_url: '/',
+        },
+        paginated_collection: {
+          path: 'schemas/paginated-collection.md',
+          reorder_inputs: true,
+          hide_extra_inputs: false,
+          remove_empty_inputs: false,
+          remove_extra_inputs: true,
+          icon: 'notes',
+        },
+      },
+    },
+  },
+  _inputs: {
+    layout: {
+      type: 'auto',
+      hidden: true,
+      cascade: true,
+    },
+    date: {
+      type: 'auto',
+      instance_value: 'now',
+      cascade: true,
+    },
+    title_suffix: {
+      type: 'auto',
+      comment: 'Added at the end of the title and highlighted in a different color',
+      cascade: true,
+    },
+    page_size: {
+      type: 'number',
+      comment: 'The number of collection items to list per page',
+      cascade: true,
+    },
+    social: {
+      type: 'auto',
+      options: {
+        preview: {
+          icon: 'link',
+        },
+      },
+      cascade: true,
+    },
+    links: {
+      type: 'auto',
+      options: {
+        preview: {
+          icon: 'link',
+        },
+      },
+      cascade: true,
+    },
+    items: {
+      type: 'auto',
+      options: {
+        preview: {
+          icon: 'link',
+        },
+      },
+      cascade: true,
+    },
+    'social[*].icon': {
+      type: 'select',
+      options: {
+        allow_empty: true,
+        values: [
+          'ph-facebook-logo',
+          'ph-instagram-logo',
+          'ph-twitter-logo',
+          'ph-github-logo',
+          'ph-youtube-logo',
+        ],
+      },
+      cascade: true,
+    },
+    logo_url: {
+      type: 'auto',
+      comment: 'Link for the logo in the top left of the footer',
+      cascade: true,
+    },
+    copyright: {
+      type: 'auto',
+      comment: 'Automatically prefixed with the current year',
+      cascade: true,
+    },
+    isActive: {
+      type: 'switch',
+      cascade: true,
+    },
+    page_description: {
+      type: 'auto',
+      comment: 'Defaults to the description set in the Site SEO data file',
+      cascade: true,
+    },
+    favicon_icon: {
+      type: 'image',
+      comment: 'For the shortcut icon meta tag',
+      cascade: true,
+    },
+    faivcon_image: {
+      type: 'image',
+      comment: 'For the icon meta tag',
+      cascade: true,
+    },
+    canonical_url: {
+      type: 'auto',
+      comment: 'Defaults to the pages url',
+      cascade: true,
+    },
+    featured_image: {
+      type: 'auto',
+      comment: 'Defaults to the image set in the Site SEO data file',
+      cascade: true,
+    },
+    open_graph_type: {
+      type: 'auto',
+      comment: "Defaults to the type 'website'",
+      cascade: true,
+    },
+    author_twitter_handle: {
+      type: 'auto',
+      comment: 'Defaults to the twitter site value set in the Site SEO data file',
+      cascade: true,
+    },
+    no_index: {
+      type: 'checkbox',
+      comment: '>-\n      When selected this removes the page from your sitemap and adds the noindex\n      robots meta tag',
+      cascade: true,
+    },
+  },
+  _structures: {
+    features: {
+      style: 'select',
+      values: [
+        {
+          value: {
+            item: {},
+            isActive: {},
+          },
+        },
+      ],
+    },
+  },
+  timezone: 'Etc/UTC',
+};

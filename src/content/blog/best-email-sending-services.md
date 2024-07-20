@@ -1,10 +1,58 @@
 ---
+_schema: default
 date: 2022-03-11T00:00:00Z
 title: Best email sending services
 tags:
   - technology
   - blog
 author: Wendy Parkes
+recurring_event:
+  recurrences:
+    - pattern:
+        type: select
+        options:
+          values:
+            - daily
+            - weekly
+            - monthly
+            - yearly
+      interval:
+        type: number
+        empty_type: number
+      days:
+        type: multiselect
+        options:
+          values:
+            - sunday
+            - monday
+            - tuesday
+            - wednesday
+            - thursday
+            - friday
+            - saturday
+      monthlyPattern:
+        type: select
+        options:
+          values:
+            - first
+            - second
+            - third
+            - fourth
+            - last
+      monthlyPatternDay:
+        type: select
+        options:
+          values:
+            - sunday
+            - monday
+            - tuesday
+            - wednesday
+            - thursday
+            - friday
+            - saturday
+      endDate:
+        type: date
+        empty_type: string
 thumb_image:
   image: /images/blog/blog-thumb-3.jpg
   image_alt: Staff meeting
@@ -20,7 +68,6 @@ seo:
   open_graph_type: article
   no_index: false
 ---
-
 When you send an email campaign, you expect it to reach your readers, right? But what if the emails go straight to your subscribers' spam folders instead of their inboxes? To make sure your emails reach their recipients successfully, follow these email delivery tips.
 
 ### Use an ESP
