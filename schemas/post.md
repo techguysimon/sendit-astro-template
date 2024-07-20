@@ -4,6 +4,7 @@ title: ''
 tags:
   - blog
 author: Gerard Hopper
+recurrences: []
 thumb_image:
   image: ''
   image_alt: ''
